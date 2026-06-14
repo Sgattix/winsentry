@@ -1,5 +1,7 @@
 use std::io::Read;
 
+use crate::logger;
+
 pub struct WinSentryConfiguration {
     pub version: String,
     pub win_exp_reboot_hotkey: String,
@@ -28,12 +30,12 @@ pub fn create_configuration(
     let config_file_path: &str = &format!("{}\\Config.toml", config_path);
 
     if !std::path::Path::new(&config_path).exists() {
-        println!("Creating configuration directory at {}...", config_path);
+        logger::info(&format!("Creating configuration directory at {}...", config_path));
         std::fs::create_dir_all(&config_path)?;
     }
 
     if !std::path::Path::new(&config_file_path).exists() {
-        println!("Creating configuration file at {}...", config_file_path);
+        logger::info(&format!("Creating configuration file at {}...", config_file_path));
         std::fs::File::create(&config_file_path)?;
     }
     let _file = std::fs::File::open(&config_file_path)?;
@@ -71,7 +73,7 @@ pub fn load_configuration(
             .trim()
             .to_string(),
     };
-    println!("Configuration loaded: {:?}", config);
+    logger::info(&format!("Configuration loaded: {:?}", config));
     Ok(config)
 }
 
