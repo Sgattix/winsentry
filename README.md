@@ -22,9 +22,10 @@ Download the latest release from the [releases page](https://github.com/Sgattix/
 
 ## Features
 
-- **UI Recovery Panic Button**: Instantly refreshes the taskbar and reboots the Windows Explorer process within 300ms after pressing the hotkey, restoring system responsiveness without requiring a full reboot.
-- **Storage Management**: Automatically deletes telemetry files and stages developer bloatware for user-controlled deletion, helping to free up disk space and improve system performance.
-- **Customizable Hotkeys**: Allows users to set custom hotkeys for manually refreshing the taskbar and rebooting the Windows Explorer process.
+- **UI Recovery Panic Button**: Instantly refreshes the taskbar and reboots the Windows Explorer process within 300ms after pressing the hotkey, restoring system responsiveness without requiring a full reboot. (Works even when the taskbar is frozen or unresponsive!) -> Defaults to Ctrl+Alt+W, but can be customized during setup or by editing the configuration file at %appdata%/WinSentry/Config.toml.
+- **Storage Management**: Automatically deletes telemetry files and stages developer bloatware for user-controlled deletion, helping to free up disk space and improve system performance. (Runs scans in the background every 30 minutes in known directories like `%temp%`.)
+- **Developer Bloat Detection**: Scans specified directories for common developer bloatware (e.g., `node_modules`, `target`, `bin/Debug/net*`) and stages them for review and deletion, allowing users to easily manage their storage without risking accidental deletion of important files. -> Defaults to Ctrl+Alt+Shift+C, but can be customized during setup or by editing the configuration file at %appdata%/WinSentry/Config.toml.
+- **Custom Developer Bloat Paths**: Users can specify additional directories to scan for bloatware during setup or by editing the configuration file, allowing for personalized storage management based on individual development environments.
 - **Lightweight and Native**: Built in Rust for optimal performance and minimal resource usage.
 
 ## How it Works

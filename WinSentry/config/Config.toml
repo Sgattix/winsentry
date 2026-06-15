@@ -1,2 +1,3 @@
 version = "1.0"
 win_exp_reboot_hotkey = ""
+user_scan_directories = ["C:/Users/Sgattix/Desktop/PROGRAMMING-PROJECTS/Other/WinSentry"]

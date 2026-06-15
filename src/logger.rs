@@ -1,12 +1,16 @@
-use std::{fs::OpenOptions, io::Write, path::Path, sync::OnceLock};
+use std::{ fs::OpenOptions, io::Write, path::Path, sync::OnceLock };
 
 static LOG_FILE_PATH: OnceLock<String> = OnceLock::new();
 
 pub fn create_log_file(mut installation_path: String) -> Result<(), std::io::Error> {
-    let default_log_path: String = String::from(&format!(
-        "{}\\WinSentry\\log",
-        std::env::current_dir()?.to_str().unwrap()
-    ));
+    if !std::path::Path::new(&installation_path).exists() {
+        info(&format!("Creating installation directory in {}...", installation_path));
+        std::fs::create_dir_all(&installation_path)?;
+    }
+
+    let default_log_path: String = String::from(
+        &format!("{}\\WinSentry\\log", std::env::current_dir()?.to_str().unwrap())
+    );
     if installation_path.is_empty() {
         installation_path = default_log_path;
     }
@@ -54,11 +58,14 @@ fn write_to_file(line: &str) {
 }
 
 pub fn info(message: &str) {
-    let line = format!(
-        "[INFO] [{}] {}",
-        chrono::Local::now().format("%Y-%m-%d %H:%M:%S"),
-        message
-    );
+    let line = format!("[INFO] [{}] {}", chrono::Local::now().format("%Y-%m-%d %H:%M:%S"), message);
+
+    eprintln!("{}", line);
+    write_to_file(&line);
+}
+
+pub fn warn(message: &str) {
+    let line = format!("[WARN] [{}] {}", chrono::Local::now().format("%Y-%m-%d %H:%M:%S"), message);
 
     eprintln!("{}", line);
     write_to_file(&line);
