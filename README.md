@@ -4,9 +4,13 @@ Following guidelines at: https://stardance.hackclub.com/guides/great_readme
 
 A lightweight, native Rust system daemon that restores Windows usability by pairing an instant 300ms UI recovery watchdog with a dual-strategy storage manager that automatically purges OS telemetry while staging developer bloat for safe, user-controlled deletion.
 
-## Showcase
+> NOTE: WinSentry requires the latest [Microsoft Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170) version to run. Please ensure you have it installed before using the application. Plus, you need to execute the program and Administrator privileges to run it. You may also need to allow WinSentry through Windows Defender or your antivirus software to ensure it can function properly.
 
-<video src="./showcase.mp4" width="1000" height="540" controls></video>
+## If you run into issues with the application, please check the [troubleshooting guide](https://github.com/Sgattix/winsentry/wiki/Troubleshooting) for common problems and solutions. If you still need assistance, feel free to open an issue on the GitHub repository.
+
+## Showcase (showcase.mp4)
+
+<video src="showcase.mp4" width="1000" height="540" controls></video>
 
 ## Try it
 
